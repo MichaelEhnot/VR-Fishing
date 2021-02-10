@@ -34,8 +34,12 @@ public class FishSpawn : MonoBehaviour
     private void Spawn()
     {
         nextSpawnTime = Time.time + spawnDelay;
-        Instantiate(spawn_obj, transform.position, transform.rotation);
-        print("spawn");
+        Vector3 pos = new Vector3();
+        pos.x = Random.Range(124, 168);
+        pos.y = 24.83F;
+        pos.z = Random.Range(22, 36);
+
+        Instantiate(spawn_obj, pos, new Quaternion(270, 0, 0, 0));
     }
 
     private bool ShouldSpawn()
