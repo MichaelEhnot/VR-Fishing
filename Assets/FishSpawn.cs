@@ -39,7 +39,7 @@ public class FishSpawn : MonoBehaviour
         pos.y = 24.83F;
         pos.z = Random.Range(22, 36);
 
-        Instantiate(spawn_obj, pos, new Quaternion(270, 0, 0, 0));
+        Instantiate(spawn_obj, pos, new Quaternion(180, 0, 0, 0));
     }
 
     private bool ShouldSpawn()
