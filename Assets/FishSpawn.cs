@@ -13,13 +13,18 @@ public class FishSpawn : MonoBehaviour
     [SerializeField]
     private float spawnDelay = 20;
 
+    private static int fishCount;
+    private int maxFishCount;
+
+
 
     
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        fishCount = 1;
+        maxFishCount = 5;
     }
 
     // Update is called once per frame
@@ -40,10 +45,16 @@ public class FishSpawn : MonoBehaviour
         pos.z = Random.Range(22, 36);
 
         Instantiate(spawn_obj, pos, Quaternion.Euler(270,0,0));
+        fishCount++;
     }
 
     private bool ShouldSpawn()
     {
-        return Time.time > nextSpawnTime;
+        return (Time.time > nextSpawnTime && fishCount <= maxFishCount);
+    }
+
+    public static void DecrementFishCounter()
+    {
+        fishCount--;
     }
 }
