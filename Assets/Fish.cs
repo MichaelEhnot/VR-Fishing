@@ -11,7 +11,7 @@ public class Fish : MonoBehaviour
     void Start()
     {
         direction = Random.Range(0, 2*Mathf.PI);
-        speed = 0.05f;
+        speed = 0.025f;
     }
 
     // Update is called once per frame
@@ -30,11 +30,27 @@ public class Fish : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
-        if(collision.gameObject.tag == "Terrain")
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Terrain")
         {
             //direction = Random.Range(0, 2 * Mathf.PI);
             direction = -direction;
+        }
+
+        if(other.gameObject.tag == "Lure")
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.tag == "Terrain")
+        {
+            gameObject.transform.position = new Vector3(153, 24.8f, 36);
         }
     }
 }
