@@ -23,6 +23,7 @@ public class Fish : MonoBehaviour
         if(Time.time > nextDirectionChange)
         {
             direction = Random.Range(0, 2 * Mathf.PI);
+            gameObject.transform.rotation = Quaternion.Euler(270, ((Mathf.Rad2Deg*direction)+270)%360, 0);
             nextDirectionChange += changeDirectionDelay;
         }
         
