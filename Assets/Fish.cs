@@ -8,6 +8,7 @@ public class Fish : MonoBehaviour
     private float speed;
     private float nextDirectionChange;
     private float changeDirectionDelay;
+    private AudioSource spash;
 
 
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class Fish : MonoBehaviour
         direction = Random.Range(0, 2*Mathf.PI);
         speed = 0.015f;
         changeDirectionDelay = 5;
+        spash = (AudioSource)gameObject.GetComponent(typeof(AudioSource));
     }
 
     // Update is called once per frame
@@ -35,19 +37,12 @@ public class Fish : MonoBehaviour
             );
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Lure")
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     { 
         if(other.gameObject.tag == "Lure")
         {
-            Destroy(gameObject);
+            spash.Play();
+            Destroy(gameObject, 1);
             FishSpawn.DecrementFishCounter();
             FishCaught.IncrementFishCaught();
         }
