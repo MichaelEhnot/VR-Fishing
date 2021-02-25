@@ -9,6 +9,7 @@ public class Fish : MonoBehaviour
     private float nextDirectionChange;
     private float changeDirectionDelay;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +49,7 @@ public class Fish : MonoBehaviour
         {
             Destroy(gameObject);
             FishSpawn.DecrementFishCounter();
+            FishCaught.IncrementFishCaught();
         }
     }
 
